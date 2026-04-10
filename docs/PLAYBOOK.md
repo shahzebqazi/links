@@ -13,12 +13,13 @@ Static **link hub** for family, friends, clients, and customers. Primary entry: 
 
 ## Routine: change a link or copy
 
-1. Pull `main`: `git pull origin main`
-2. Edit `index.html` (table rows: URL column + description column).
-3. Preview locally (open file or simple HTTP server).
-4. Commit: `git commit -am "Update links: short reason"`
-5. Push: `git push origin main`
-6. Wait ~1–2 minutes for Pages; hard-refresh browser or `curl -sI https://shahzeb.me/`
+1. **Source of truth for URLs**: match **`shahzebqazi.github.io`** `links/index.html` (published as **https://sqazi.sh/links/**; **`links.html`** at repo root redirects there). Keep this repo in sync when that file changes.
+2. Pull `main`: `git pull origin main`
+3. Edit `index.html` (table rows: URL column + description column).
+4. Preview locally (open file or simple HTTP server).
+5. Commit: `git commit -am "Update links: short reason"`
+6. Push: `git push origin main`
+7. Wait ~1–2 minutes for Pages; hard-refresh browser or `curl -sI https://shahzeb.me/`
 
 ## DNS (Squarespace or other host)
 
