@@ -16,6 +16,7 @@
   <link rel="apple-touch-icon" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://api.iconify.design" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <!-- Plausible: add shahzeb.me at https://plausible.io — script no-ops until domain is claimed -->
   <script defer data-domain="shahzeb.me" src="https://plausible.io/js/script.js"></script>
@@ -192,6 +193,25 @@
       line-height: 1.45;
     }
 
+    /* MDI + Simple Icons (same families as Nerd Fonts / “nerd icons”) via Iconify */
+    .links-table td.url {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+
+    .links-table td.url .link-icon-wrap {
+      display: inline-flex;
+      flex-shrink: 0;
+      opacity: 0.92;
+    }
+
+    .links-table td.url iconify-icon.link-icon {
+      display: block;
+      color: currentColor;
+    }
+
     .foot {
       margin-top: 2.5rem;
       padding-top: 1rem;
@@ -232,6 +252,9 @@
       }
 
       .links-table td.url {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         padding: 0.35rem 0.5rem;
       }
     }
@@ -277,47 +300,80 @@
       <tbody>
         <!-- Synced from shahzebqazi.github.io links/index.html (sqazi.sh/links/) -->
         <tr class="link-row m1">
-          <td class="url"><a href="mailto:code@sqazi.sh">Email</a></td>
+          <td class="url">
+            <span class="link-icon-wrap" aria-hidden="true"><iconify-icon icon="mdi:email-outline" width="1.35em" height="1.35em" class="link-icon"></iconify-icon></span>
+            <a href="mailto:code@sqazi.sh">Email</a>
+          </td>
           <td class="desc">code@sqazi.sh — primary contact.</td>
         </tr>
         <tr class="link-row m2">
-          <td class="url"><a href="https://github.com/shahzebqazi">GitHub</a></td>
+          <td class="url">
+            <span class="link-icon-wrap" aria-hidden="true"><iconify-icon icon="mdi:github" width="1.35em" height="1.35em" class="link-icon"></iconify-icon></span>
+            <a href="https://github.com/shahzebqazi">GitHub</a>
+          </td>
           <td class="desc">Repositories, dotfiles, open-source work.</td>
         </tr>
         <tr class="link-row m3">
-          <td class="url"><a href="https://gitlab.com/destroyerofworlds">GitLab</a></td>
+          <td class="url">
+            <span class="link-icon-wrap" aria-hidden="true"><iconify-icon icon="mdi:gitlab" width="1.35em" height="1.35em" class="link-icon"></iconify-icon></span>
+            <a href="https://gitlab.com/destroyerofworlds">GitLab</a>
+          </td>
           <td class="desc">CI/CD pipelines and private mirrors.</td>
         </tr>
         <tr class="link-row m4">
-          <td class="url"><a href="https://www.gankmid.co/">Gankmid Co.</a></td>
+          <td class="url">
+            <span class="link-icon-wrap" aria-hidden="true"><iconify-icon icon="mdi:gamepad-variant" width="1.35em" height="1.35em" class="link-icon"></iconify-icon></span>
+            <a href="https://www.gankmid.co/">Gankmid Co.</a>
+          </td>
           <td class="desc">Game studio; gaming infrastructure (XMPP, Matrix, matchmaking).</td>
         </tr>
         <tr class="link-row m5">
-          <td class="url"><a href="https://www.iconoclastaud.io/">Iconoclast Audio</a></td>
+          <td class="url">
+            <span class="link-icon-wrap" aria-hidden="true"><iconify-icon icon="mdi:headphones" width="1.35em" height="1.35em" class="link-icon"></iconify-icon></span>
+            <a href="https://www.iconoclastaud.io/">Iconoclast Audio</a>
+          </td>
           <td class="desc">Mixing, mastering, DSP.</td>
         </tr>
         <tr class="link-row m6">
-          <td class="url"><a href="https://reverb.com/shop/gearacquisitionsyndrome/">Reverb shop</a></td>
+          <td class="url">
+            <span class="link-icon-wrap" aria-hidden="true"><iconify-icon icon="mdi:guitar-electric" width="1.35em" height="1.35em" class="link-icon"></iconify-icon></span>
+            <a href="https://reverb.com/shop/gearacquisitionsyndrome/">Reverb shop</a>
+          </td>
           <td class="desc">DSP pedals and gear.</td>
         </tr>
         <tr class="link-row m7">
-          <td class="url"><a href="https://matrix.to/#/@metalmasteringengineer:matrix.org">Matrix</a></td>
+          <td class="url">
+            <span class="link-icon-wrap" aria-hidden="true"><iconify-icon icon="simple-icons:matrix" width="1.35em" height="1.35em" class="link-icon"></iconify-icon></span>
+            <a href="https://matrix.to/#/@metalmasteringengineer:matrix.org">Matrix</a>
+          </td>
           <td class="desc">@metalmasteringengineer:matrix.org</td>
         </tr>
         <tr class="link-row m8">
-          <td class="url"><a href="https://social.devilplan.com/@willy">Mastodon</a></td>
+          <td class="url">
+            <span class="link-icon-wrap" aria-hidden="true"><iconify-icon icon="simple-icons:mastodon" width="1.35em" height="1.35em" class="link-icon"></iconify-icon></span>
+            <a href="https://social.devilplan.com/@willy">Mastodon</a>
+          </td>
           <td class="desc">@willy@social.devilplan.com</td>
         </tr>
         <tr class="link-row m1">
-          <td class="url"><a href="https://www.instagram.com/kongposhmosh/">Instagram</a></td>
+          <td class="url">
+            <span class="link-icon-wrap" aria-hidden="true"><iconify-icon icon="simple-icons:instagram" width="1.35em" height="1.35em" class="link-icon"></iconify-icon></span>
+            <a href="https://www.instagram.com/kongposhmosh/">Instagram</a>
+          </td>
           <td class="desc">@kongposhmosh</td>
         </tr>
         <tr class="link-row m2">
-          <td class="url"><a href="https://store.steampowered.com/">Steam</a></td>
+          <td class="url">
+            <span class="link-icon-wrap" aria-hidden="true"><iconify-icon icon="simple-icons:steam" width="1.35em" height="1.35em" class="link-icon"></iconify-icon></span>
+            <a href="https://store.steampowered.com/">Steam</a>
+          </td>
           <td class="desc">Games and multiplayer.</td>
         </tr>
         <tr class="link-row m3">
-          <td class="url"><a href="https://www.youtube.com/">YouTube</a></td>
+          <td class="url">
+            <span class="link-icon-wrap" aria-hidden="true"><iconify-icon icon="simple-icons:youtube" width="1.35em" height="1.35em" class="link-icon"></iconify-icon></span>
+            <a href="https://www.youtube.com/">YouTube</a>
+          </td>
           <td class="desc">Demos, music, long-form video.</td>
         </tr>
       </tbody>
@@ -325,9 +381,10 @@
 
     <p class="foot">
       Analytics: Plausible (privacy-friendly page views; <a href="https://plausible.io/privacy" style="color: inherit;">policy</a>).
-      Email signups go through Formspree. Scheduled rows use client-side dates — links still exist in page source.
+      Email signups go through Formspree. Icons: Material Design Icons + Simple Icons (Nerd Fonts–compatible sets) via Iconify.
     </p>
   </div>
+  <script src="https://code.iconify.design/iconify-icon/2/iconify-icon.min.js" crossorigin defer></script>
   <script src="js/schedule.js" defer></script>
 </body>
 </html>
