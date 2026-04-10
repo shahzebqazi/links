@@ -47,6 +47,35 @@ git revert HEAD   # or specific SHA
 git push origin main
 ```
 
+## Phase 2 — analytics, email, scheduling, assets
+
+### Plausible Analytics
+
+1. Create an account at [Plausible](https://plausible.io) and add site **`shahzeb.me`**.
+2. The page already loads `https://plausible.io/js/script.js` with `data-domain="shahzeb.me"`. Stats appear after the domain is added and DNS/HTTPS work.
+3. To disable temporarily, remove that `<script>` line from `index.html`.
+
+### Email (Formspree)
+
+1. Create a form at [Formspree](https://formspree.io) and copy the form id from the endpoint URL (`/f/xxxxxxx`).
+2. In `index.html`, set the form `action` to `https://formspree.io/f/YOUR_ID` (replace the placeholder id **`myzglw`**).
+3. Remove or shorten the hint paragraph under the form once submissions work.
+
+### Scheduled links
+
+- Optional attributes on each **`<tr class="link-row">`**: `data-from="YYYY-MM-DD"` and/or `data-until="YYYY-MM-DD"` (local calendar day).
+- Logic is in `js/schedule.js` (client-side only). **Do not rely on this to hide sensitive URLs** — the link still exists in HTML source.
+- Remove the example “Holiday hours” row or adjust dates when done testing.
+
+### Favicon & social preview
+
+- `favicon.svg` — Matcha-style icon; linked from `index.html`.
+- Open Graph uses `https://shahzeb.me/favicon.svg` as `og:image`; swap for a 1200×630 PNG later if you want richer share cards.
+
+### Paths note
+
+- Assets use **relative** paths (`favicon.svg`, `js/schedule.js`) so the site works both on **`shahzeb.me`** and **`username.github.io/repo/`**.
+
 ## References
 
 - `AGENTS.md` — agent-oriented steps

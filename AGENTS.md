@@ -29,6 +29,12 @@ Instructions for AI coding agents working in **`shahzebqazi/links`**.
 | `docs/CURSOR.md` | Where rules and skills live |
 | `docs/AGENTS.md` | Longer agent notes |
 
+## Phase 2 behavior
+
+- **Plausible**: `data-domain="shahzeb.me"` — owner must add the domain in Plausible.
+- **Formspree**: Replace placeholder form id in `index.html` (`myzglw` → your id).
+- **Scheduling**: `data-from` / `data-until` on `<tr>`; see `js/schedule.js` — not a security boundary.
+
 ## Quick verify
 
 ```bash

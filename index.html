@@ -4,9 +4,21 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Willy's Links</title>
+  <meta name="description" content="Links for family, friends, clients, and customers — Willy's Links." />
+  <link rel="canonical" href="https://shahzeb.me/" />
+  <meta property="og:title" content="Willy's Links" />
+  <meta property="og:description" content="Links for family, friends, clients, and customers." />
+  <meta property="og:url" content="https://shahzeb.me/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://shahzeb.me/favicon.svg" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <!-- Plausible: add shahzeb.me at https://plausible.io — script no-ops until domain is claimed -->
+  <script defer data-domain="shahzeb.me" src="https://plausible.io/js/script.js"></script>
   <style>
     :root {
       --bg: #0a0a0a;
@@ -46,9 +58,77 @@
       font-size: clamp(2rem, 6vw, 3rem);
       text-align: center;
       letter-spacing: 0.02em;
-      margin: 0 0 2rem;
+      margin: 0 0 1.5rem;
       color: #d4e8d0;
       text-shadow: 0 0 40px rgba(139, 180, 130, 0.15);
+    }
+
+    .subscribe {
+      max-width: 22rem;
+      margin: 0 auto 2rem;
+      padding: 1rem 1.15rem;
+      border: 1px solid color-mix(in srgb, var(--matcha-3) 45%, transparent);
+      border-radius: 10px;
+      background: rgba(139, 180, 130, 0.06);
+    }
+
+    .subscribe h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+      text-align: center;
+      color: var(--matcha-2);
+    }
+
+    .subscribe label {
+      display: block;
+      font-size: 0.8rem;
+      margin-bottom: 0.35rem;
+      color: var(--matcha-6);
+    }
+
+    .subscribe input[type="email"] {
+      width: 100%;
+      padding: 0.55rem 0.65rem;
+      border: 1px solid color-mix(in srgb, var(--matcha-5) 40%, transparent);
+      border-radius: 6px;
+      background: #121812;
+      color: var(--fg);
+      font-family: "DM Sans", system-ui, sans-serif;
+      font-size: 0.95rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .subscribe input[type="email"]::placeholder {
+      color: rgba(232, 228, 217, 0.45);
+    }
+
+    .subscribe button {
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      border: none;
+      border-radius: 6px;
+      background: var(--matcha-3);
+      color: #0a0a0a;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-weight: 500;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .subscribe button:hover,
+    .subscribe button:focus-visible {
+      background: var(--matcha-2);
+      outline: none;
+    }
+
+    .subscribe .hint {
+      font-size: 0.72rem;
+      margin: 0.6rem 0 0;
+      line-height: 1.4;
+      color: rgba(232, 228, 217, 0.55);
+      text-align: center;
     }
 
     .links-table {
@@ -81,14 +161,14 @@
       transition: background 0.2s ease;
     }
 
-    .links-table tbody tr:nth-child(8n + 1) { color: var(--matcha-1); }
-    .links-table tbody tr:nth-child(8n + 2) { color: var(--matcha-2); }
-    .links-table tbody tr:nth-child(8n + 3) { color: var(--matcha-3); }
-    .links-table tbody tr:nth-child(8n + 4) { color: var(--matcha-4); }
-    .links-table tbody tr:nth-child(8n + 5) { color: var(--matcha-5); }
-    .links-table tbody tr:nth-child(8n + 6) { color: var(--matcha-6); }
-    .links-table tbody tr:nth-child(8n + 7) { color: var(--matcha-7); }
-    .links-table tbody tr:nth-child(8n) { color: var(--matcha-8); }
+    .link-row.m1 { color: var(--matcha-1); }
+    .link-row.m2 { color: var(--matcha-2); }
+    .link-row.m3 { color: var(--matcha-3); }
+    .link-row.m4 { color: var(--matcha-4); }
+    .link-row.m5 { color: var(--matcha-5); }
+    .link-row.m6 { color: var(--matcha-6); }
+    .link-row.m7 { color: var(--matcha-7); }
+    .link-row.m8 { color: var(--matcha-8); }
 
     .links-table a {
       font-family: "IBM Plex Mono", ui-monospace, monospace;
@@ -112,9 +192,25 @@
       line-height: 1.45;
     }
 
-    /* Mobile: title + links only */
+    .foot {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(139, 180, 130, 0.12);
+      font-size: 0.72rem;
+      line-height: 1.5;
+      color: rgba(232, 228, 217, 0.45);
+      text-align: center;
+      max-width: 36rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     @media (max-width: 639px) {
       h1 {
+        margin-bottom: 1.25rem;
+      }
+
+      .subscribe {
         margin-bottom: 1.5rem;
       }
 
@@ -140,7 +236,6 @@
       }
     }
 
-    /* Widescreen: show descriptions; keep table visually borderless */
     @media (min-width: 640px) {
       .links-table tbody tr:hover {
         background: rgba(139, 180, 130, 0.06);
@@ -160,6 +255,18 @@
   <div class="wrap">
     <h1>Willy's Links</h1>
 
+    <section class="subscribe" aria-labelledby="subscribe-title">
+      <h2 id="subscribe-title">Stay in touch</h2>
+      <!-- Replace myzglw with your Formspree form id from https://formspree.io -->
+      <form action="https://formspree.io/f/myzglw" method="POST">
+        <label for="email">Email for occasional updates</label>
+        <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com" />
+        <input type="hidden" name="_subject" value="Willy's Links signup" />
+        <button type="submit">Request invite / updates</button>
+      </form>
+      <p class="hint">Set your Formspree endpoint in <code>index.html</code> (replace <code>myzglw</code>). Remove this line once live.</p>
+    </section>
+
     <table class="links-table" role="table" aria-label="Links for family, friends, clients, and customers">
       <thead>
         <tr>
@@ -168,40 +275,51 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr class="link-row m1">
           <td class="url"><a href="https://example.com">Family hub</a></td>
           <td class="desc">Replace URL — home base for family.</td>
         </tr>
-        <tr>
+        <tr class="link-row m2">
           <td class="url"><a href="https://example.com">Shared calendar</a></td>
           <td class="desc">Optional — events &amp; reminders.</td>
         </tr>
-        <tr>
+        <tr class="link-row m3">
           <td class="url"><a href="https://example.com">Friends circle</a></td>
           <td class="desc">Replace URL — close friends &amp; personal.</td>
         </tr>
-        <tr>
+        <tr class="link-row m4">
           <td class="url"><a href="https://example.com">Group chat</a></td>
           <td class="desc">Discord, Signal, or whatever you use.</td>
         </tr>
-        <tr>
+        <tr class="link-row m5">
           <td class="url"><a href="https://example.com">Client portal</a></td>
           <td class="desc">Booking, intake, or project updates.</td>
         </tr>
-        <tr>
+        <tr class="link-row m6">
           <td class="url"><a href="https://example.com">Contracts &amp; billing</a></td>
           <td class="desc">Invoices, agreements, scope.</td>
         </tr>
-        <tr>
+        <tr class="link-row m7">
           <td class="url"><a href="https://example.com">Shop / product</a></td>
           <td class="desc">What you sell — link your storefront.</td>
         </tr>
-        <tr>
+        <tr class="link-row m8">
           <td class="url"><a href="https://example.com">Support &amp; FAQ</a></td>
           <td class="desc">Help customers help themselves.</td>
         </tr>
+        <!-- Example: seasonal row — visible only between dates (local calendar). Remove attributes or row when not needed. -->
+        <tr class="link-row m1" data-from="2026-12-01" data-until="2026-12-31">
+          <td class="url"><a href="https://example.com">Holiday hours</a></td>
+          <td class="desc">Example scheduled link (December 2026 only).</td>
+        </tr>
       </tbody>
     </table>
+
+    <p class="foot">
+      Analytics: Plausible (privacy-friendly page views; <a href="https://plausible.io/privacy" style="color: inherit;">policy</a>).
+      Email signups go through Formspree. Scheduled rows use client-side dates — links still exist in page source.
+    </p>
   </div>
+  <script src="js/schedule.js" defer></script>
 </body>
 </html>

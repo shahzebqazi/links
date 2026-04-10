@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Willy's Links project rules
 
-- **Stack**: Single static `index.html` at repo root; GitHub Pages from `main` branch `/`. No build step unless explicitly added.
+- **Stack**: Static `index.html`, `favicon.svg`, `js/schedule.js` at repo root; GitHub Pages from `main` branch `/`. No build step unless explicitly added.
 - **Scope**: This repo is the **links hub** (family, friends, clients, customers). Prefer minimal, readable HTML/CSS; avoid frameworks unless the user asks.
 - **Design**: Black background, Matcha-inspired accent colors per row, three-font system (see `index.html` and `AGENTS.md`). Keep mobile and widescreen layouts in sync when editing.
 - **Links**: Replace placeholder `href` values with real URLs; keep anchor text concise for mobile. Descriptions are desktop-only (hidden on narrow viewports).

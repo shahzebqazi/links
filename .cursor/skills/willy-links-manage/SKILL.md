@@ -12,7 +12,7 @@ description: Manages the Willy's Links GitHub repo (static Pages site), edits in
 
 ## Edit workflow
 
-1. Open `index.html` only for content/design unless adding assets (e.g. `favicon.ico`, `images/`).
+1. Edit `index.html` for links, subscribe form, Plausible snippet, and meta tags. Optional: `js/schedule.js` (date logic), `favicon.svg`.
 2. Prefer **local preview**: open `index.html` in a browser or `python3 -m http.server` from repo root.
 3. **Commit**: `git add -A && git commit -m "Describe change"`  
 4. **Push**: `git push origin main`
