@@ -432,6 +432,12 @@
       height: auto;
       display: block;
       border-radius: 1px;
+      filter: sepia(0.4) contrast(1.07) saturate(0.68) brightness(0.89) hue-rotate(-6deg);
+      transition: filter 0.25s ease;
+    }
+
+    .beezz-postcard__link:hover img {
+      filter: sepia(0.32) contrast(1.05) saturate(0.74) brightness(0.94) hue-rotate(-4deg);
     }
 
     /* Menu-style social strip: icon + label row */
