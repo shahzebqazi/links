@@ -425,7 +425,16 @@
         0 0 0 1px rgba(40, 35, 28, 0.35),
         0 16px 44px rgba(0, 0, 0, 0.5);
       transform: rotate(-0.35deg);
-      transition: box-shadow 0.2s ease;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    /* Second tile: dropped + tilted like a photo stacked under the first */
+    .postcard-tile--stacked {
+      margin-top: 0.75rem;
+    }
+
+    .postcard-tile--stacked .postcard-tile__frame {
+      transform: rotate(2.75deg);
     }
 
     .postcard-tile__frame:hover {
@@ -457,7 +466,23 @@
     .postcard-tile__caption--gothic {
       font-family: "UnifrakturMaguntia", "Old English Text MT", "Times New Roman", serif;
       font-size: 1.35rem;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
+    }
+
+    .postcard-tile__caption--gothic a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(139, 180, 130, 0.28);
+    }
+
+    .postcard-tile__caption--gothic a:hover {
+      border-bottom-color: rgba(139, 180, 130, 0.5);
+    }
+
+    .postcard-tile__caption--gothic a:focus-visible {
+      outline: 2px solid var(--matcha-3);
+      outline-offset: 3px;
+      border-radius: 2px;
     }
 
     .postcard-tile__caption--urdu {
@@ -470,6 +495,10 @@
       .postcard-pair {
         grid-template-columns: 1fr 1fr;
         gap: 1.25rem 1.5rem;
+      }
+
+      .postcard-tile--stacked {
+        margin-top: 2.5rem;
       }
     }
 
@@ -610,6 +639,10 @@
         transform: none;
       }
 
+      .postcard-tile--stacked .postcard-tile__frame {
+        transform: rotate(2.75deg);
+      }
+
       .links-table,
       .links-table tbody,
       .links-table tr,
@@ -746,9 +779,11 @@
             decoding="async"
           />
         </a>
-        <p class="postcard-tile__caption postcard-tile__caption--gothic">My newest ink</p>
+        <p class="postcard-tile__caption postcard-tile__caption--gothic">
+          <a href="https://beezz-zart.ca/" rel="noopener noreferrer">MY NEWEST INK</a>
+        </p>
       </div>
-      <div class="postcard-tile">
+      <div class="postcard-tile postcard-tile--stacked">
         <a
           class="postcard-tile__frame"
           href="https://sqazi.sh/kashmiri-language-poetry/"
