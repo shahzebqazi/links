@@ -78,9 +78,17 @@
     }
 
     .page-title__chain svg {
-      width: 0.88em;
-      height: 0.88em;
+      width: 0.92em;
+      height: 0.92em;
       display: block;
+    }
+
+    .page-title__chain svg .chain-link-ring {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .page-title__text {
@@ -630,11 +638,17 @@
   <div class="wrap">
     <h1 class="page-title">
       <span class="page-title__chain" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="presentation"><path fill="currentColor" d="M10.59 13.41a2 2 0 0 0 2.83 0l3.77-3.77a2 2 0 0 0-2.83-2.83l-1.41 1.41l-1.42-1.41a2 2 0 0 0-2.82 0L6 11.41a2 2 0 0 0 0 2.82l3.77 3.77a2 2 0 0 0 2.83 0l-1.41-1.41l-1.42 1.41a2 2 0 0 1-2.82 0l-3.77-3.77a2 2 0 0 1 0-2.82l2.36-2.36a2 2 0 0 1 2.82 0l1.41 1.41l1.42-1.41z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="presentation">
+          <ellipse class="chain-link-ring" cx="9.5" cy="12" rx="3.35" ry="7.85" transform="rotate(-44 9.5 12)" />
+          <ellipse class="chain-link-ring" cx="14.5" cy="12" rx="3.35" ry="7.85" transform="rotate(44 14.5 12)" />
+        </svg>
       </span>
       <span class="page-title__text">Willy's Links</span>
       <span class="page-title__chain" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="presentation"><path fill="currentColor" d="M10.59 13.41a2 2 0 0 0 2.83 0l3.77-3.77a2 2 0 0 0-2.83-2.83l-1.41 1.41l-1.42-1.41a2 2 0 0 0-2.82 0L6 11.41a2 2 0 0 0 0 2.82l3.77 3.77a2 2 0 0 0 2.83 0l-1.41-1.41l-1.42 1.41a2 2 0 0 1-2.82 0l-3.77-3.77a2 2 0 0 1 0-2.82l2.36-2.36a2 2 0 0 1 2.82 0l1.41 1.41l1.42-1.41z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="presentation">
+          <ellipse class="chain-link-ring" cx="9.5" cy="12" rx="3.35" ry="7.85" transform="rotate(-44 9.5 12)" />
+          <ellipse class="chain-link-ring" cx="14.5" cy="12" rx="3.35" ry="7.85" transform="rotate(44 14.5 12)" />
+        </svg>
       </span>
     </h1>
 
