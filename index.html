@@ -195,6 +195,18 @@
       pointer-events: none;
     }
 
+    .newsletter-postcard .postcard-img-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      outline-offset: 2px;
+    }
+
+    .newsletter-postcard .postcard-img-link:focus-visible {
+      outline: 2px solid var(--matcha-3);
+      border-radius: 1px;
+    }
+
     .newsletter-postcard .postcard-img-wrap img {
       width: 100%;
       height: 100%;
@@ -632,16 +644,23 @@
       <summary class="newsletter-disclosure__summary">Newsletter</summary>
       <section class="newsletter-postcard newsletter-postcard--disabled" aria-label="Newsletter signup">
         <figure class="postcard-img-wrap">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Srinagar_pano.jpg/960px-Srinagar_pano.jpg"
-            srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Srinagar_pano.jpg/640px-Srinagar_pano.jpg 640w, https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Srinagar_pano.jpg/960px-Srinagar_pano.jpg 960w"
-            sizes="(max-width: 639px) 100vw, 22rem"
-            width="960"
-            height="433"
-            alt=""
-            loading="lazy"
-            decoding="async"
-          />
+          <a
+            class="postcard-img-link"
+            href="https://social.devilplan.com/@willy/116380572444146064"
+            rel="noopener noreferrer"
+            aria-label="View related post on Mastodon"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Srinagar_pano.jpg/960px-Srinagar_pano.jpg"
+              srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Srinagar_pano.jpg/640px-Srinagar_pano.jpg 640w, https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Srinagar_pano.jpg/960px-Srinagar_pano.jpg 960w"
+              sizes="(max-width: 639px) 100vw, 22rem"
+              width="960"
+              height="433"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
         </figure>
         <form class="postcard-form" action="https://formspree.io/f/myzglw" method="POST">
           <input type="hidden" name="_subject" value="Willy's Links newsletter" />
