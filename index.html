@@ -92,12 +92,58 @@
       color: rgba(232, 228, 217, 0.38);
     }
 
+    /* Collapsible newsletter block (closed by default) */
+    .newsletter-disclosure {
+      max-width: 44rem;
+      margin: 0 auto 2.25rem;
+    }
+
+    .newsletter-disclosure__summary {
+      list-style: none;
+      cursor: pointer;
+      text-align: center;
+      margin: 0;
+      padding: 0.4rem 0.75rem;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(140, 140, 138, 0.92);
+      user-select: none;
+    }
+
+    .newsletter-disclosure__summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .newsletter-disclosure__summary::after {
+      content: " ▾";
+      font-size: 0.85em;
+      opacity: 0.65;
+    }
+
+    .newsletter-disclosure:not([open]) .newsletter-disclosure__summary::after {
+      content: " ▸";
+    }
+
+    .newsletter-disclosure__summary:hover,
+    .newsletter-disclosure__summary:focus-visible {
+      color: rgba(170, 168, 164, 0.95);
+      outline: none;
+    }
+
+    .newsletter-disclosure__summary:focus-visible {
+      box-shadow: 0 0 0 2px rgba(139, 180, 130, 0.35);
+      border-radius: 4px;
+    }
+
     /* Kashmir postcard: CC BY-SA 3.0 — KennyOMG, File:Srinagar_pano.jpg (Wikimedia Commons). See HTML comment. */
     .newsletter-postcard {
       display: grid;
       grid-template-columns: 1.15fr 1fr;
       max-width: 44rem;
-      margin: 0 auto 2.25rem;
+      margin: 0.75rem 0 0;
       background: linear-gradient(152deg, #faf6ef 0%, #ebe3d6 48%, #e2d8c8 100%);
       border-radius: 3px;
       box-shadow:
@@ -436,10 +482,13 @@
         margin-bottom: 1.25rem;
       }
 
+      .newsletter-disclosure {
+        margin-bottom: 1.5rem;
+      }
+
       .newsletter-postcard {
         grid-template-columns: 1fr;
         transform: none;
-        margin-bottom: 1.5rem;
       }
 
       .newsletter-postcard .postcard-img-wrap {
@@ -541,25 +590,28 @@
 
     <!-- Image: CC BY-SA 3.0 — KennyOMG — https://commons.wikimedia.org/wiki/File:Srinagar_pano.jpg -->
     <!-- Active newsletter signup (Formspree) is on branch feature/newsletter -->
-    <section class="newsletter-postcard newsletter-postcard--disabled" aria-label="Newsletter">
-      <figure class="postcard-img-wrap">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Srinagar_pano.jpg/960px-Srinagar_pano.jpg"
-          srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Srinagar_pano.jpg/640px-Srinagar_pano.jpg 640w, https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Srinagar_pano.jpg/960px-Srinagar_pano.jpg 960w"
-          sizes="(max-width: 639px) 100vw, 22rem"
-          width="960"
-          height="433"
-          alt=""
-          loading="lazy"
-          decoding="async"
-        />
-      </figure>
-      <form class="postcard-form" action="https://formspree.io/f/myzglw" method="POST">
-        <input type="hidden" name="_subject" value="Willy's Links newsletter" />
-        <input name="email" type="email" autocomplete="email" placeholder="your@email.com" aria-label="Email" disabled />
-        <button type="submit" disabled>sign up for Newsletter</button>
-      </form>
-    </section>
+    <details class="newsletter-disclosure">
+      <summary class="newsletter-disclosure__summary">Newsletter</summary>
+      <section class="newsletter-postcard newsletter-postcard--disabled" aria-label="Newsletter signup">
+        <figure class="postcard-img-wrap">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Srinagar_pano.jpg/960px-Srinagar_pano.jpg"
+            srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Srinagar_pano.jpg/640px-Srinagar_pano.jpg 640w, https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Srinagar_pano.jpg/960px-Srinagar_pano.jpg 960w"
+            sizes="(max-width: 639px) 100vw, 22rem"
+            width="960"
+            height="433"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+        <form class="postcard-form" action="https://formspree.io/f/myzglw" method="POST">
+          <input type="hidden" name="_subject" value="Willy's Links newsletter" />
+          <input name="email" type="email" autocomplete="email" placeholder="your@email.com" aria-label="Email" disabled />
+          <button type="submit" disabled>sign up for Newsletter</button>
+        </form>
+      </section>
+    </details>
 
     <nav class="socials-bar" aria-label="Social profiles">
       <div class="socials-bar__head">
