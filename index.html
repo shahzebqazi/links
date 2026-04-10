@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&family=Fredoka:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&family=Fredoka:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
   <!-- Plausible: add shahzeb.me at https://plausible.io — script no-ops until domain is claimed -->
   <script defer data-domain="shahzeb.me" src="https://plausible.io/js/script.js"></script>
   <style>
@@ -392,14 +392,28 @@
       padding: 0 0.15em;
     }
 
-    /* Beezz Zart — postcard-style image (local asset) */
-    .beezz-postcard {
-      max-width: min(20rem, 100%);
+    /* Side-by-side postcard tiles (shared frame, no image filters) */
+    .postcard-pair {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      max-width: 44rem;
       margin: 0 auto 1.75rem;
+      align-items: start;
     }
 
-    .beezz-postcard__link {
+    .postcard-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.65rem;
+      min-width: 0;
+    }
+
+    .postcard-tile__frame {
       display: block;
+      width: 100%;
+      max-width: min(20rem, 100%);
       text-decoration: none;
       color: inherit;
       border-radius: 3px;
@@ -411,33 +425,52 @@
         0 0 0 1px rgba(40, 35, 28, 0.35),
         0 16px 44px rgba(0, 0, 0, 0.5);
       transform: rotate(-0.35deg);
-      transition: box-shadow 0.2s ease, filter 0.2s ease;
+      transition: box-shadow 0.2s ease;
     }
 
-    .beezz-postcard__link:hover {
-      filter: brightness(1.05);
+    .postcard-tile__frame:hover {
       box-shadow:
         0 1px 0 rgba(255, 255, 255, 0.65) inset,
         0 0 0 1px rgba(139, 180, 130, 0.3),
         0 18px 48px rgba(0, 0, 0, 0.55);
     }
 
-    .beezz-postcard__link:focus-visible {
+    .postcard-tile__frame:focus-visible {
       outline: 2px solid var(--matcha-3);
       outline-offset: 4px;
     }
 
-    .beezz-postcard__link img {
+    .postcard-tile__frame img {
       width: 100%;
       height: auto;
       display: block;
       border-radius: 1px;
-      filter: brightness(0.49) contrast(1.57) saturate(0.44) grayscale(0.2) sepia(0.14) hue-rotate(298deg);
-      transition: filter 0.25s ease;
     }
 
-    .beezz-postcard__link:hover img {
-      filter: brightness(0.58) contrast(1.42) saturate(0.55) grayscale(0.08) sepia(0.08) hue-rotate(298deg);
+    .postcard-tile__caption {
+      margin: 0;
+      text-align: center;
+      color: rgba(232, 228, 217, 0.9);
+      line-height: 1.35;
+    }
+
+    .postcard-tile__caption--gothic {
+      font-family: "UnifrakturMaguntia", "Old English Text MT", "Times New Roman", serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.04em;
+    }
+
+    .postcard-tile__caption--urdu {
+      font-family: "Noto Naskh Arabic", "Geeza Pro", "Arabic Typesetting", serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+
+    @media (min-width: 560px) {
+      .postcard-pair {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem 1.5rem;
+      }
     }
 
     /* Menu-style social strip: icon + label row */
@@ -569,11 +602,11 @@
         min-height: calc(9.5rem - 20px);
       }
 
-      .beezz-postcard {
+      .postcard-pair {
         margin-bottom: 1.5rem;
       }
 
-      .beezz-postcard__link {
+      .postcard-tile__frame {
         transform: none;
       }
 
@@ -696,22 +729,43 @@
       </section>
     </details>
 
-    <section class="beezz-postcard" aria-label="Beezz Zart">
-      <a
-        class="beezz-postcard__link"
-        href="https://beezz-zart.ca/"
-        rel="noopener noreferrer"
-        aria-label="Beezz Zart — open beezz-zart.ca"
-      >
-        <img
-          src="assets/beezz-zart-postcard.jpg"
-          alt="Tattoo artwork — Beezz Zart"
-          width="768"
-          height="1024"
-          loading="lazy"
-          decoding="async"
-        />
-      </a>
+    <section class="postcard-pair" aria-label="Tattoo and Kashmiri poetry">
+      <div class="postcard-tile">
+        <a
+          class="postcard-tile__frame"
+          href="https://beezz-zart.ca/"
+          rel="noopener noreferrer"
+          aria-label="Beezz Zart — open beezz-zart.ca"
+        >
+          <img
+            src="assets/beezz-zart-postcard.jpg"
+            alt="Tattoo artwork — Beezz Zart"
+            width="768"
+            height="1024"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+        <p class="postcard-tile__caption postcard-tile__caption--gothic">My newest ink</p>
+      </div>
+      <div class="postcard-tile">
+        <a
+          class="postcard-tile__frame"
+          href="https://sqazi.sh/kashmiri-language-poetry/"
+          rel="noopener noreferrer"
+          aria-label="Kashmiri language poetry — open sqazi.sh"
+        >
+          <img
+            src="assets/kashmiri-poetry-gulrez.png"
+            alt="Illustration — saffron crocus with red accents"
+            width="1024"
+            height="1024"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+        <p class="postcard-tile__caption postcard-tile__caption--urdu" lang="ur" dir="rtl">گلریز</p>
+      </div>
     </section>
 
     <nav class="socials-bar" aria-label="Social profiles">
