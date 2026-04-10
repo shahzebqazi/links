@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&family=Fredoka:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <!-- Plausible: add shahzeb.me at https://plausible.io — script no-ops until domain is claimed -->
   <script defer data-domain="shahzeb.me" src="https://plausible.io/js/script.js"></script>
   <style>
@@ -53,15 +53,38 @@
       margin: 0 auto;
     }
 
-    h1 {
-      font-family: "Cormorant Garamond", Georgia, serif;
+    h1.page-title {
+      font-family: "Fredoka", "DM Sans", system-ui, sans-serif;
       font-weight: 600;
       font-size: clamp(2rem, 6vw, 3rem);
       text-align: center;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.03em;
       margin: 0 0 1.5rem;
       color: #d4e8d0;
       text-shadow: 0 0 40px rgba(139, 180, 130, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.35em 0.5em;
+    }
+
+    .page-title__chain {
+      display: inline-flex;
+      flex-shrink: 0;
+      align-items: center;
+      color: var(--matcha-2);
+      filter: drop-shadow(0 0 12px rgba(143, 188, 143, 0.35));
+    }
+
+    .page-title__chain svg {
+      width: 0.88em;
+      height: 0.88em;
+      display: block;
+    }
+
+    .page-title__text {
+      line-height: 1.1;
     }
 
     .site-subtitle {
@@ -478,7 +501,7 @@
     }
 
     @media (max-width: 639px) {
-      h1 {
+      h1.page-title {
         margin-bottom: 1.25rem;
       }
 
@@ -586,7 +609,15 @@
 </head>
 <body>
   <div class="wrap">
-    <h1>Willy's Links</h1>
+    <h1 class="page-title">
+      <span class="page-title__chain" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="presentation"><path fill="currentColor" d="M10.59 13.41a2 2 0 0 0 2.83 0l3.77-3.77a2 2 0 0 0-2.83-2.83l-1.41 1.41l-1.42-1.41a2 2 0 0 0-2.82 0L6 11.41a2 2 0 0 0 0 2.82l3.77 3.77a2 2 0 0 0 2.83 0l-1.41-1.41l-1.42 1.41a2 2 0 0 1-2.82 0l-3.77-3.77a2 2 0 0 1 0-2.82l2.36-2.36a2 2 0 0 1 2.82 0l1.41 1.41l1.42-1.41z"/></svg>
+      </span>
+      <span class="page-title__text">Willy's Links</span>
+      <span class="page-title__chain" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="presentation"><path fill="currentColor" d="M10.59 13.41a2 2 0 0 0 2.83 0l3.77-3.77a2 2 0 0 0-2.83-2.83l-1.41 1.41l-1.42-1.41a2 2 0 0 0-2.82 0L6 11.41a2 2 0 0 0 0 2.82l3.77 3.77a2 2 0 0 0 2.83 0l-1.41-1.41l-1.42 1.41a2 2 0 0 1-2.82 0l-3.77-3.77a2 2 0 0 1 0-2.82l2.36-2.36a2 2 0 0 1 2.82 0l1.41 1.41l1.42-1.41z"/></svg>
+      </span>
+    </h1>
 
     <!-- Image: CC BY-SA 3.0 — KennyOMG — https://commons.wikimedia.org/wiki/File:Srinagar_pano.jpg -->
     <!-- Active newsletter signup (Formspree) is on branch feature/newsletter -->
