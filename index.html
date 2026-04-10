@@ -165,6 +165,38 @@
       outline: none;
     }
 
+    /* Main branch: signup disabled; active Formspree form lives on branch feature/newsletter */
+    .newsletter-postcard--disabled .postcard-form input[type="email"] {
+      cursor: not-allowed;
+      background: #d4cfc4;
+      color: #5c5852;
+      border-color: #a8a090;
+      opacity: 0.92;
+    }
+
+    .newsletter-postcard--disabled .postcard-form input[type="email"]::placeholder {
+      color: rgba(28, 25, 20, 0.35);
+    }
+
+    .newsletter-postcard--disabled .postcard-form input[type="email"]:focus {
+      outline: none;
+      border-color: #a8a090;
+    }
+
+    .newsletter-postcard--disabled .postcard-form button {
+      cursor: not-allowed;
+      background: linear-gradient(180deg, #9a9a94 0%, #7a7a74 100%);
+      color: #3a3a38;
+      border-color: #6a6a66;
+      opacity: 0.92;
+      filter: none;
+    }
+
+    .newsletter-postcard--disabled .postcard-form button:hover,
+    .newsletter-postcard--disabled .postcard-form button:focus-visible {
+      filter: none;
+    }
+
     .links-table {
       width: 100%;
       border-collapse: collapse;
@@ -448,7 +480,8 @@
     <h1>Willy's Links</h1>
 
     <!-- Image: CC BY-SA 3.0 — KennyOMG — https://commons.wikimedia.org/wiki/File:Srinagar_pano.jpg -->
-    <section class="newsletter-postcard" aria-label="Newsletter">
+    <!-- Active newsletter signup (Formspree) is on branch feature/newsletter -->
+    <section class="newsletter-postcard newsletter-postcard--disabled" aria-label="Newsletter">
       <figure class="postcard-img-wrap">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Srinagar_pano.jpg/960px-Srinagar_pano.jpg"
@@ -463,8 +496,8 @@
       </figure>
       <form class="postcard-form" action="https://formspree.io/f/myzglw" method="POST">
         <input type="hidden" name="_subject" value="Willy's Links newsletter" />
-        <input name="email" type="email" required autocomplete="email" placeholder="your@email.com" aria-label="Email" />
-        <button type="submit">sign up for Newsletter</button>
+        <input name="email" type="email" autocomplete="email" placeholder="your@email.com" aria-label="Email" disabled />
+        <button type="submit" disabled>sign up for Newsletter</button>
       </form>
     </section>
 
