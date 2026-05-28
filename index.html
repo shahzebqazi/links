@@ -18,7 +18,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&family=Fredoka:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
-  <!-- Plausible: add shahzeb.me at https://plausible.io — script no-ops until domain is claimed -->
   <script defer data-domain="shahzeb.me" src="https://plausible.io/js/script.js"></script>
   <style>
     :root {
@@ -93,7 +92,6 @@
       color: rgba(232, 228, 217, 0.38);
     }
 
-    /* Collapsible newsletter block (closed by default) */
     .newsletter-disclosure {
       max-width: 44rem;
       margin: 0 auto 2.25rem;
@@ -139,7 +137,6 @@
       border-radius: 4px;
     }
 
-    /* Kashmir postcard: CC BY-SA 3.0 — KennyOMG, File:Srinagar_pano.jpg (Wikimedia Commons). See HTML comment. */
     .newsletter-postcard {
       display: grid;
       grid-template-columns: 1.15fr 1fr;
@@ -252,7 +249,6 @@
       outline: none;
     }
 
-    /* Main branch: signup disabled; active Formspree form lives on branch feature/newsletter */
     .newsletter-postcard--disabled .postcard-form input[type="email"] {
       cursor: not-allowed;
       background: #d4cfc4;
@@ -363,7 +359,6 @@
       outline: none;
     }
 
-    /* MDI + Simple Icons (same families as Nerd Fonts / “nerd icons”) via Iconify */
     .links-table td.url {
       display: flex;
       align-items: center;
@@ -392,14 +387,99 @@
       padding: 0 0.15em;
     }
 
-    /* Side-by-side postcard tiles (shared frame, no image filters) */
     .postcard-pair {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
       max-width: 44rem;
       margin: 0 auto 1.75rem;
-      align-items: start;
+    }
+
+    .postcard-carousel__viewport {
+      overflow: hidden;
+    }
+
+    .postcard-carousel__track {
+      display: flex;
+      gap: 0;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+
+    .postcard-carousel__track .postcard-tile {
+      flex: 0 0 100%;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .postcard-carousel__track {
+        transition: none;
+      }
+    }
+
+    .postcard-carousel__controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 0.85rem;
+    }
+
+    .postcard-carousel__btn {
+      min-width: 2.5rem;
+      min-height: 2.5rem;
+      padding: 0.35rem 0.65rem;
+      border: 1px solid rgba(139, 180, 130, 0.35);
+      border-radius: 6px;
+      background: rgba(139, 180, 130, 0.08);
+      color: var(--matcha-2);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 1.1rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .postcard-carousel__btn:hover,
+    .postcard-carousel__btn:focus-visible {
+      background: rgba(139, 180, 130, 0.14);
+      border-color: rgba(139, 180, 130, 0.5);
+      outline: none;
+    }
+
+    .postcard-carousel__btn:focus-visible {
+      box-shadow: 0 0 0 2px rgba(139, 180, 130, 0.35);
+    }
+
+    .postcard-carousel__btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .postcard-carousel__dots {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .postcard-carousel__dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: rgba(139, 180, 130, 0.28);
+      cursor: pointer;
+    }
+
+    .postcard-carousel__dot[aria-selected="true"] {
+      background: var(--matcha-3);
+      box-shadow: 0 0 0 2px rgba(139, 180, 130, 0.2);
+    }
+
+    .postcard-carousel__dot:hover,
+    .postcard-carousel__dot:focus-visible {
+      background: var(--matcha-4);
+      outline: none;
+    }
+
+    .postcard-carousel__dot:focus-visible {
+      box-shadow: 0 0 0 2px rgba(139, 180, 130, 0.35);
     }
 
     .postcard-tile {
@@ -428,7 +508,6 @@
       transition: box-shadow 0.2s ease, transform 0.2s ease;
     }
 
-    /* Second tile: dropped + tilted like a photo stacked under the first */
     .postcard-tile--stacked {
       margin-top: 0.75rem;
     }
@@ -491,18 +570,41 @@
       font-weight: 500;
     }
 
-    @media (min-width: 560px) {
-      .postcard-pair {
-        grid-template-columns: 1fr 1fr;
-        gap: 1.25rem 1.5rem;
+    @media (min-width: 768px) {
+      .postcard-carousel__viewport {
+        overflow: visible;
+      }
+
+      .postcard-carousel__track {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem 1.15rem;
+        transform: none !important;
+        transition: none;
+        will-change: auto;
+      }
+
+      .postcard-carousel__track .postcard-tile {
+        flex: none;
+      }
+
+      .postcard-tile__frame {
+        max-width: 100%;
+      }
+
+      .postcard-carousel__controls {
+        display: none;
       }
 
       .postcard-tile--stacked {
-        margin-top: 2.5rem;
+        margin-top: 0;
+      }
+
+      .postcard-tile:nth-child(3) .postcard-tile__frame {
+        transform: rotate(-2.25deg);
       }
     }
 
-    /* Menu-style social strip: icon + label row */
     .socials-bar {
       margin: 0 auto 1.75rem;
       max-width: 44rem;
@@ -639,8 +741,12 @@
         transform: none;
       }
 
+      .postcard-tile--stacked {
+        margin-top: 0;
+      }
+
       .postcard-tile--stacked .postcard-tile__frame {
-        transform: rotate(2.75deg);
+        transform: none;
       }
 
       .links-table,
@@ -702,7 +808,6 @@
         background: rgba(139, 180, 130, 0.06);
       }
 
-      /* URL column: icon + link text; link text wraps so long names are not ellipsized */
       .links-table .url {
         width: 60%;
         flex-wrap: nowrap;
@@ -730,8 +835,7 @@
   <div class="wrap">
     <h1 class="page-title">Willy's Links</h1>
 
-    <!-- Image: CC BY-SA 3.0 — KennyOMG — https://commons.wikimedia.org/wiki/File:Srinagar_pano.jpg -->
-    <!-- Active newsletter signup (Formspree) is on branch feature/newsletter -->
+    <!-- Newsletter image: CC BY-SA 3.0 — KennyOMG — commons.wikimedia.org/wiki/File:Srinagar_pano.jpg -->
     <details class="newsletter-disclosure">
       <summary class="newsletter-disclosure__summary">Newsletter</summary>
       <section class="newsletter-postcard newsletter-postcard--disabled" aria-label="Newsletter signup">
@@ -762,44 +866,76 @@
       </section>
     </details>
 
-    <section class="postcard-pair" aria-label="Tattoo and Kashmiri poetry">
-      <div class="postcard-tile">
-        <a
-          class="postcard-tile__frame"
-          href="https://beezz-zart.ca/"
-          rel="noopener noreferrer"
-          aria-label="Beezz Zart — open beezz-zart.ca"
-        >
-          <img
-            src="assets/beezz-zart-postcard.jpg"
-            alt="Tattoo artwork — Beezz Zart"
-            width="768"
-            height="1024"
-            loading="lazy"
-            decoding="async"
-          />
-        </a>
-        <p class="postcard-tile__caption postcard-tile__caption--gothic">
-          <a href="https://beezz-zart.ca/" rel="noopener noreferrer">MY NEWEST INK</a>
-        </p>
+    <section
+      class="postcard-pair postcard-carousel"
+      data-postcard-carousel
+      aria-roledescription="carousel"
+      aria-label="Featured postcards"
+    >
+      <div class="postcard-carousel__viewport">
+        <div class="postcard-carousel__track" tabindex="0" aria-label="Postcard slides">
+          <div class="postcard-tile">
+            <a
+              class="postcard-tile__frame"
+              href="https://beezz-zart.ca/"
+              rel="noopener noreferrer"
+              aria-label="Beezz Zart — open beezz-zart.ca"
+            >
+              <img
+                src="assets/beezz-zart-postcard.jpg"
+                alt="Tattoo artwork — Beezz Zart"
+                width="768"
+                height="1024"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <p class="postcard-tile__caption postcard-tile__caption--gothic">
+              <a href="https://beezz-zart.ca/" rel="noopener noreferrer">MY NEWEST INK</a>
+            </p>
+          </div>
+          <div class="postcard-tile postcard-tile--stacked">
+            <a
+              class="postcard-tile__frame"
+              href="https://iconoclastaud.io/gift-for-alif/"
+              rel="noopener noreferrer"
+              aria-label="Sarir e Khamma — open Iconoclast Audio gift site"
+            >
+              <img
+                src="assets/sarir-e-khamma-portrait.png"
+                alt="Sarir e Khamma — creative writing sessions with Alif"
+                width="592"
+                height="1104"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <p class="postcard-tile__caption">sarir e khamma</p>
+          </div>
+          <div class="postcard-tile">
+            <a
+              class="postcard-tile__frame"
+              href="https://devilplan.com/"
+              rel="noopener noreferrer"
+              aria-label="Devilplan — open devilplan.com"
+            >
+              <img
+                src="assets/devilplan-skull.png"
+                alt="Devilplan — band logo"
+                width="400"
+                height="400"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <p class="postcard-tile__caption">Devilplan</p>
+          </div>
+        </div>
       </div>
-      <div class="postcard-tile postcard-tile--stacked">
-        <a
-          class="postcard-tile__frame"
-          href="https://sqazi.sh/kashmiri-language-poetry/"
-          rel="noopener noreferrer"
-          aria-label="Kashmiri language poetry — open sqazi.sh"
-        >
-          <img
-            src="assets/kashmiri-poetry-gulrez.png"
-            alt="Illustration — saffron crocus with red accents"
-            width="1024"
-            height="1024"
-            loading="lazy"
-            decoding="async"
-          />
-        </a>
-        <p class="postcard-tile__caption postcard-tile__caption--urdu" lang="ur" dir="rtl">گلریز</p>
+      <div class="postcard-carousel__controls" aria-label="Postcard carousel controls">
+        <button type="button" class="postcard-carousel__btn" data-carousel-prev aria-label="Previous postcard">‹</button>
+        <div class="postcard-carousel__dots" role="tablist" aria-label="Choose postcard"></div>
+        <button type="button" class="postcard-carousel__btn" data-carousel-next aria-label="Next postcard">›</button>
       </div>
     </section>
 
@@ -847,22 +983,28 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Synced from shahzebqazi.github.io links/index.html (sqazi.sh/links/) -->
         <tr class="link-row m1">
+          <td class="url">
+            <span class="link-icon-wrap" aria-hidden="true"><svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.35em" height="1.35em" role="presentation"><path fill="currentColor" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm-1 2l5 5h-5zM8 13h8v2H8zm0 4h5v2H8z"/></svg></span>
+            <a href="https://sqazi.sh/content.html?page=cv">CV — sqazi.sh</a>
+          </td>
+          <td class="desc"><a href="https://en.wikipedia.org/wiki/Curriculum_vitae">CV</a> and portfolio — sqazi.sh</td>
+        </tr>
+        <tr class="link-row m2">
           <td class="url">
             <span class="link-icon-wrap" aria-hidden="true"><svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.35em" height="1.35em" role="presentation"><path fill="currentColor" d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0l-8 5l-8-5zm0 12H4V8l8 5l8-5z"/></svg></span>
             <a href="mailto:code@sqazi.sh">Email</a>
           </td>
           <td class="desc">Direct <a href="https://en.wikipedia.org/wiki/Email">email</a> for clients, collaborators, and inquiries. The address is the link.</td>
         </tr>
-        <tr class="link-row m2">
+        <tr class="link-row m3">
           <td class="url">
             <span class="link-icon-wrap" aria-hidden="true"><svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.35em" height="1.35em" role="presentation"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/willyworst">LinkedIn</a>
           </td>
-          <td class="desc"><a href="https://en.wikipedia.org/wiki/Audio_engineering">Audio engineering</a> and <a href="https://en.wikipedia.org/wiki/Research">research</a> credentials; clients and collaborators.</td>
+          <td class="desc">Software engineering and agent work; professional network for collaborators and recruiters.</td>
         </tr>
-        <tr class="link-row m3">
+        <tr class="link-row m4">
           <td class="url">
             <span class="link-icon-wrap" aria-hidden="true"><svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.35em" height="1.35em" role="presentation"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg></span>
             <a href="https://github.com/shahzebqazi">GitHub</a>
@@ -872,35 +1014,35 @@
           </td>
           <td class="desc">Public <a href="https://en.wikipedia.org/wiki/Open-source_software">open-source</a> on GitHub; private mirrors, <a href="https://en.wikipedia.org/wiki/Continuous_integration">CI/CD</a>, and <a href="https://en.wikipedia.org/wiki/DevOps">DevOps</a> on GitLab.</td>
         </tr>
-        <tr class="link-row m4">
+        <tr class="link-row m5">
           <td class="url">
             <span class="link-icon-wrap" aria-hidden="true"><svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.35em" height="1.35em" role="presentation"><path fill="currentColor" d="M7 6h10a6 6 0 0 1 6 6a6 6 0 0 1-6 6c-1.78 0-3.37-.77-4.47-2h-1.06c-1.1 1.23-2.69 2-4.47 2a6 6 0 0 1-6-6a6 6 0 0 1 6-6M6 9v2H4v2h2v2h2v-2h2v-2H8V9zm9.5 3a1.5 1.5 0 0 0-1.5 1.5a1.5 1.5 0 0 0 1.5 1.5a1.5 1.5 0 0 0 1.5-1.5a1.5 1.5 0 0 0-1.5-1.5m3-3a1.5 1.5 0 0 0-1.5 1.5a1.5 1.5 0 0 0 1.5 1.5a1.5 1.5 0 0 0 1.5-1.5A1.5 1.5 0 0 0 18.5 9"/></svg></span>
             <a href="https://gankmid.co/">My Game Dev Studio</a>
           </td>
           <td class="desc"><a href="https://en.wikipedia.org/wiki/Godot_(game_engine)">Godot</a>, <a href="https://en.wikipedia.org/wiki/S%26box">S&amp;box</a>, <a href="https://en.wikipedia.org/wiki/Game_audio">game audio</a>, consulting.</td>
         </tr>
-        <tr class="link-row m5">
+        <tr class="link-row m6">
           <td class="url">
             <span class="link-icon-wrap" aria-hidden="true"><svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.35em" height="1.35em" role="presentation"><path fill="currentColor" d="M12 1c-5 0-9 4-9 9v7a3 3 0 0 0 3 3h3v-8H5v-2a7 7 0 0 1 7-7a7 7 0 0 1 7 7v2h-4v8h3a3 3 0 0 0 3-3v-7c0-5-4.03-9-9-9"/></svg></span>
             <a href="https://www.iconoclastaud.io/">My Audio Firm - Iconoclast Audio</a>
           </td>
           <td class="desc"><a href="https://en.wikipedia.org/wiki/Audio_mastering">Mastering</a>, <a href="https://en.wikipedia.org/wiki/Audio_mixing_(recorded_music)">mixing</a>, <a href="https://en.wikipedia.org/wiki/Recording_studio">recording</a>, R&amp;D, studio integration.</td>
         </tr>
-        <tr class="link-row m6">
+        <tr class="link-row m7">
           <td class="url">
             <span class="link-icon-wrap" aria-hidden="true"><svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.35em" height="1.35em" role="presentation"><path fill="currentColor" d="M12,5.5A3.5,3.5 0 0,1 15.5,9A3.5,3.5 0 0,1 12,12.5A3.5,3.5 0 0,1 8.5,9A3.5,3.5 0 0,1 12,5.5M5,8C5.56,8 6.08,8.15 6.53,8.42C6.38,9.85 6.8,11.27 7.66,12.38C7.16,13.34 6.16,14 5,14A3,3 0 0,1 2,11A3,3 0 0,1 5,8M19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14C17.84,14 16.84,13.34 16.34,12.38C17.2,11.27 17.62,9.85 17.47,8.42C17.92,8.15 18.44,8 19,8M5.5,18.25C5.5,16.18 8.41,14.5 12,14.5C15.59,14.5 18.5,16.18 18.5,18.25V20H5.5V18.25M0,20V18.5C0,17.11 1.89,15.94 4.45,15.6C3.86,16.28 3.5,17.22 3.5,18.25V20H0M24,20H20.5V18.25C20.5,17.22 20.14,16.28 19.55,15.6C22.11,15.94 24,17.11 24,18.5V20Z"/></svg></span>
-            <a href="https://sqazi.sh/mystic-ai/">My Ai - Mystic Labs</a>
+            <a href="https://sqazi.sh/mystic-ai/">Mystic — UX showcase</a>
           </td>
-          <td class="desc"><a href="https://en.wikipedia.org/wiki/Artificial_intelligence">AI</a> and <a href="https://en.wikipedia.org/wiki/Intelligent_agent">agents</a> in production—see <a href="https://ai.stanford.edu/">Stanford AI</a> and <a href="https://arxiv.org/list/cs.AI/recent">arXiv cs.AI</a>.</td>
+          <td class="desc"><a href="https://github.com/shahzebqazi/mystic-ai">mystic-ai</a> — brand system and desktop UX demo.</td>
         </tr>
-        <tr class="link-row m7">
+        <tr class="link-row m8">
           <td class="url">
             <span class="link-icon-wrap" aria-hidden="true"><svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.35em" height="1.35em" role="presentation"><path fill="currentColor" d="M19.59 3H22v2h-1.59l-5.29 5.29l-1.41-1.39zM12 9c.26 0 .5.1.71.3l2 2c.18.2.29.43.29.7l-.1.4l-4 8c-.19.35-.54.53-.9.53c-.35 0-.71-.18-.89-.53l-1.86-3.7l-3.7-1.8c-.37-.2-.55-.55-.55-.9s.18-.7.55-.9l8-4c.14-.1.29-.1.45-.1m-2.65 2.82l-.7.68l2.85 2.85l.68-.7zm-1.41 1.41l-.71.71l2.83 2.83l.71-.71z"/></svg></span>
             <a href="https://reverb.com/shop/gearacquisitionsyndrome/">My Shop — GAS</a>
           </td>
           <td class="desc"><a href="https://en.wikipedia.org/wiki/Musical_instrument">Gear</a> and instruments—curated listings on Reverb.</td>
         </tr>
-        <tr class="link-row m8">
+        <tr class="link-row m9">
           <td class="url">
             <span class="link-icon-wrap" aria-hidden="true"><svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.35em" height="1.35em" role="presentation"><path fill="currentColor" d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2m-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3m7 15H5V8h14v10z"/></svg></span>
             <a href="https://www.depop.com/willys_fits/">My Boutique — Depop</a>
@@ -911,10 +1053,14 @@
     </table>
 
     <footer class="foot">
-      <p class="site-subtitle" role="doc-subtitle">What is the sound of one hand clapping? The other hand says you’re still on mute.</p>
+      <p class="site-subtitle" role="doc-subtitle">
+        Willy Worst — software engineer and AI agent builder in Toronto. This page is a quick link hub for family, friends, and clients; résumé and projects live at <a href="https://sqazi.sh/content.html?page=cv">sqazi.sh</a>.
+        Audio mastering and studio work: <a href="https://www.iconoclastaud.io/" rel="noopener noreferrer">iconoclastaud.io</a>.
+      </p>
       <p class="foot__copyright">© 2026 <a href="https://sqazi.sh/">sqazi.sh</a></p>
     </footer>
   </div>
   <script src="js/schedule.js" defer></script>
+  <script src="assets/js/links-carousel.js" defer></script>
 </body>
 </html>
