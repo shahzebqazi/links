@@ -11,6 +11,15 @@
   var autoTimer;
   var touchStartX;
   var AUTO_MS = 6000;
+  var STACK_PEEK_PX = 28;
+
+  function syncTrackHeight() {
+    var maxH = 0;
+    tiles.forEach(function (tile) {
+      maxH = Math.max(maxH, tile.offsetHeight);
+    });
+    track.style.minHeight = maxH ? maxH + STACK_PEEK_PX + "px" : "";
+  }
 
   tiles.forEach(function (_, i) {
     var dot = document.createElement("button");
@@ -35,6 +44,7 @@
       var depth = (i - index + tiles.length) % tiles.length;
       tile.setAttribute("data-stack-depth", String(depth));
     });
+    syncTrackHeight();
   }
 
   function goTo(i) {
@@ -104,6 +114,15 @@
   section.addEventListener("focusout", function (e) {
     if (!section.contains(e.relatedTarget)) restartAuto();
   });
+
+  tiles.forEach(function (tile) {
+    var img = tile.querySelector("img");
+    if (img && !img.complete) {
+      img.addEventListener("load", syncTrackHeight);
+    }
+  });
+
+  window.addEventListener("resize", syncTrackHeight);
 
   applyStack();
   updateUi();
