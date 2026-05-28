@@ -14,9 +14,16 @@
   var STACK_PEEK_PX = 28;
 
   function syncTrackHeight() {
+    var depths = tiles.map(function (tile) {
+      return tile.getAttribute("data-stack-depth");
+    });
     var maxH = 0;
     tiles.forEach(function (tile) {
+      tile.setAttribute("data-stack-depth", "0");
       maxH = Math.max(maxH, tile.offsetHeight);
+    });
+    tiles.forEach(function (tile, i) {
+      tile.setAttribute("data-stack-depth", depths[i]);
     });
     track.style.minHeight = maxH ? maxH + STACK_PEEK_PX + "px" : "";
   }
