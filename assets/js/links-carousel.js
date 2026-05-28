@@ -7,7 +7,6 @@
   var prevBtn = section.querySelector("[data-carousel-prev]");
   var nextBtn = section.querySelector("[data-carousel-next]");
   var dotsRoot = section.querySelector(".postcard-carousel__dots");
-  var mq = window.matchMedia("(max-width: 767px)");
   var index = 0;
   var autoTimer;
   var touchStartX;
@@ -31,22 +30,16 @@
     return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }
 
-  function isCarousel() {
-    return mq.matches;
-  }
-
-  function applySlide() {
-    if (!isCarousel()) {
-      track.style.transform = "";
-      return;
-    }
-    track.style.transform = "translateX(-" + index * 100 + "%)";
+  function applyStack() {
+    tiles.forEach(function (tile, i) {
+      var depth = (i - index + tiles.length) % tiles.length;
+      tile.setAttribute("data-stack-depth", String(depth));
+    });
   }
 
   function goTo(i) {
-    if (!isCarousel()) return;
     index = (i + tiles.length) % tiles.length;
-    applySlide();
+    applyStack();
     updateUi();
     restartAuto();
   }
@@ -57,11 +50,9 @@
       dot.setAttribute("aria-selected", on ? "true" : "false");
       dot.tabIndex = on ? 0 : -1;
     });
-    prevBtn.disabled = false;
-    nextBtn.disabled = false;
     section.setAttribute(
       "aria-label",
-      "Featured postcards — slide " + (index + 1) + " of " + tiles.length
+      "Postcard stack — card " + (index + 1) + " of " + tiles.length
     );
   }
 
@@ -72,7 +63,7 @@
 
   function restartAuto() {
     stopAuto();
-    if (!isCarousel() || reducedMotion()) return;
+    if (reducedMotion()) return;
     autoTimer = setInterval(function () {
       goTo(index + 1);
     }, AUTO_MS);
@@ -87,19 +78,17 @@
   });
 
   track.addEventListener("touchstart", function (e) {
-    if (!isCarousel()) return;
     touchStartX = e.changedTouches[0].clientX;
   }, { passive: true });
 
   track.addEventListener("touchend", function (e) {
-    if (!isCarousel() || touchStartX == null) return;
+    if (touchStartX == null) return;
     var dx = e.changedTouches[0].clientX - touchStartX;
     if (Math.abs(dx) > 40) goTo(index + (dx < 0 ? 1 : -1));
     touchStartX = null;
   }, { passive: true });
 
   track.addEventListener("keydown", function (e) {
-    if (!isCarousel()) return;
     if (e.key === "ArrowLeft") {
       e.preventDefault();
       goTo(index - 1);
@@ -116,17 +105,7 @@
     if (!section.contains(e.relatedTarget)) restartAuto();
   });
 
-  mq.addEventListener("change", function () {
-    if (!isCarousel()) {
-      index = 0;
-      stopAuto();
-    }
-    applySlide();
-    updateUi();
-    restartAuto();
-  });
-
-  applySlide();
+  applyStack();
   updateUi();
   restartAuto();
 })();
